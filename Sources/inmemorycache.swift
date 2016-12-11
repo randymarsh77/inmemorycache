@@ -5,6 +5,11 @@ import Scope
 
 public class InMemoryCache : PubSubCache, IDisposable
 {
+	public init() {
+		_cache = [:]
+		_subscribers = Array<Subscriber>()
+	}
+
 	public func get(_ keys: Array<String>) -> [String : Data?] {
 		return CreateDictionary(keys.map { ($0, _cache[$0]) })
 	}
